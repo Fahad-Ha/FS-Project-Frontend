@@ -13,15 +13,11 @@ const login = async (userInfo) => {
 };
 
 const register = async (userInfo) => {
-  try {
-    // const formData = new FormData();
-    // for (const key in userInfo) formData.append(key, userInfo[key]);
-    const { data } = await instance.post("/auth/register", userInfo);
-    storeToken(data.token);
-    return data;
-  } catch (error) {
-    console.log(error.response);
-  }
+  // const formData = new FormData();
+  // for (const key in userInfo) formData.append(key, userInfo[key]);
+  const { data } = await instance.post("/auth/register", userInfo);
+  storeToken(data.token);
+  return data;
 };
 
 const storeToken = (token) => {

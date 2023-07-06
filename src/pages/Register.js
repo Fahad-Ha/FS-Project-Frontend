@@ -5,40 +5,45 @@ import { useNavigate } from "react-router-dom";
 import { isError, useMutation } from "react-query";
 import { checkToken, register } from "../api/auth";
 import { Navigate } from "react-router-dom/dist";
+import ErrorMsg from "../component/ErrorMsg";
 
 const Register = () => {
   const [user, setUser] = useContext(UserContext);
   const [userInfo, setUserInfo] = useState({});
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
 
-  const { mutate: registerFn } = useMutation({
+  const { mutate: registerFn, error } = useMutation({
     mutationFn: () => register(userInfo),
-    onSuccess: () => setUser(checkToken()),
+    onError: (error) => alert(error),
+    onSuccess: () => {
+      if (localStorage.getItem("token")) {
+        setUser(true);
+        navigate("/");
+      }
+    },
   });
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     registerFn();
-    console.log(userInfo);
-    // navigate("/home");
+    // console.log(userInfo);
   };
 
-  if (user) {
-    // return <Navigate to="/home" />;
-  }
-
   return (
-    <div className="bg-gray-100 ">
-      <div className="bg-form-img pt-20 xl:pt-36 text-white h-[95vh] w-auto justify-center mx-auto ">
+    <div className="bg-gray-100 h-[100%] bg-form-img">
+      <div className=" text-white h-[100%] w-auto justify-center mx-auto ">
         <div className="card w-96 glass mx-auto">
           <div className="card-body justify-center">
             <h2 className="card-title text-3xl justify-center text-center my-2">
               Register
             </h2>
             <form onSubmit={handleFormSubmit}>
+              <ErrorMsg error={error} />
               <label>Username</label>
               <input
                 name="username"
@@ -83,9 +88,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <footer className="text-gray-900 h-10 text-center">
-        <p>Made by FBA Team</p>
-      </footer>
     </div>
   );
 };
