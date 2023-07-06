@@ -12,14 +12,14 @@ function App() {
 
   return (
     <UserContext.Provider value={[user, setUser]}>
-      <div className="App">
-        <nav className="navbar bg-gray-100">
-          <a className="btn btn-ghost normal-case text-xl text-gray-900 absolute">
+      <div className="h-[100vh] w-[100vw]">
+        <nav className="navbar bg-gray-100 h-[10%] flex flex-row justify-between">
+          <a className="btn btn-ghost normal-case text-xl text-gray-900 ">
             MunchMap
           </a>
           <ul
             tabIndex={0}
-            className="menu menu-sm z-[1] shadow bg-gray-100 rounded-box flex flex-row ml-[85%] xl:ml-[90%] text-gray-900 "
+            className="menu menu-sm z-[1] shadow bg-gray-100 rounded-box flex flex-row  text-gray-900 "
           >
             <li>
               <NavLink exact to="/login">
@@ -33,10 +33,12 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
+        <div className="h-[100%] ">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </div>
       </div>
     </UserContext.Provider>
   );
