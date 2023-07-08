@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
   const [user, setUser] = useContext(UserContext);
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -31,36 +32,55 @@ const Login = () => {
     // console.log(userInfo);
     loginFn();
   };
+  const toggleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
   return (
-    <div className="bg-form-img text-white h-[100%] w-auto justify-center mx-auto ">
-      <div className="card w-96 glass mx-auto h-[100%]">
-        <figure></figure>
-        <div className="card-body justify-center ">
-          <form onSubmit={handleFormSubmit}>
-            <h2 className="card-title text-3xl justify-center text-center my-2">
-              Login
-            </h2>
-            <label>Username</label>
+    <div className="bg-form-img h-[100%] py-[2%] w-auto justify-center mx-auto ">
+      <div className="card w-96 glass mx-auto h-[100%] backdrop-blur-2xl xl:w-[40%]">
+        <div className="card-body">
+          <h2
+            className="card-title 
+            text-3xl justify-center text-center my-[2%] xl:mt-[25%] xl:text-5xl 2xl:mt-[10%]"
+          >
+            Login
+          </h2>
+          <form
+            onSubmit={handleFormSubmit}
+            className="xl:my-[30%] 2xl:my-[15%] "
+          >
+            <label className="label">Email</label>
             <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              className="input opacity-70 w-full max-w-xs"
+              type="email"
+              name="email"
+              placeholder="Email"
+              className="input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl
+        "
               onChange={handleChange}
             />
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="input opacity-70 w-full max-w-xs"
-              onChange={handleChange}
-            />
+            <div className="relative">
+              <label className="label">Password</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                className="input opacity-70   w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl
+    "
+                onChange={handleChange}
+              />
+              <button
+                type="button"
+                className="absolute top-[70%] right-[5%] transform  -translate-y-1/2 focus:outline-none"
+                onClick={toggleShowPassword}
+              >
+                {showPassword ? <p>hide</p> : <p>Show</p>}
+              </button>
+            </div>
             <div className="card-actions justify-center">
               <button
                 type="submit"
                 onClick={login}
-                className="opacity-90 px-4 py-2 mr-2 rounded bg-orange-500 hover:bg-orange-600 text-white mt-6"
+                className="w-[100%] font-bold opacity-90 px-4 py-2  rounded-lg bg-orange-500 hover:bg-orange-600 text-gray-200 mt-[10%] xl:text-xl"
               >
                 Login
               </button>
