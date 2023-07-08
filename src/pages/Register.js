@@ -5,7 +5,6 @@ import { FaExclamationCircle } from "react-icons/fa";
 
 import { isError, useMutation } from "react-query";
 import { checkToken, register } from "../api/auth";
-import { Navigate } from "react-router-dom/dist";
 import ErrorMsg from "../component/ErrorMsg";
 
 const Register = () => {
