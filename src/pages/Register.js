@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
-
 import { useNavigate } from "react-router-dom";
+import { FaExclamationCircle } from "react-icons/fa";
+
 import { isError, useMutation } from "react-query";
 import { checkToken, register } from "../api/auth";
 import { Navigate } from "react-router-dom/dist";
@@ -30,7 +31,7 @@ const Register = () => {
     } else if (name === "confirmPass") {
       setPasswordConfirmLength(value.length);
       setPasswordMismatch(
-        value !== userInfo.password && passwordConfirmLength >= 8
+        value !== userInfo.password && passwordConfirmLength >= 7
       );
     }
   };
@@ -61,7 +62,7 @@ const Register = () => {
           </h2>
           <form
             onSubmit={handleFormSubmit}
-            className="xl:my-[30%] 2xl:my-[15%] lg:my-[30%] "
+            className="xl:my-[30%] 2xl:my-[15%]  "
           >
             <ErrorMsg error={error} />
             <label className="label">Username</label>
@@ -82,31 +83,41 @@ const Register = () => {
               className="input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl
   "
             />
-            <label className="label">Password</label>
-            <input
-              name="password"
-              type="password"
-              onChange={handleChange}
-              placeholder="Password"
-              className={`input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-offset-2 xl:max-w-5xl ${
-                passwordLength >= 8 && passwordMismatch
-                  ? "ring-2 ring-red-500"
-                  : ""
-              }`}
-            />
-            <label className="label">Confirm Password</label>
-            <input
-              name="confirmPass"
-              type="password"
-              placeholder="Confirm Password"
-              onChange={handleChange}
-              className={`input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl ${
-                passwordConfirmLength >= 8 && passwordMismatch
-                  ? "ring-2 ring-red-500"
-                  : ""
-              }`}
-            />
-            {passwordConfirmLength >= 8 && passwordMismatch && (
+            <div className="relative">
+              <label className="label">Password</label>
+              <input
+                name="password"
+                type="password"
+                onChange={handleChange}
+                placeholder="Password"
+                className={`input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-offset-2 xl:max-w-5xl ${
+                  passwordLength >= 7 && passwordMismatch
+                    ? "ring-2 ring-red-500"
+                    : ""
+                }`}
+              />
+            </div>
+            <div className="relative">
+              <label className="label">Confirm Password</label>
+              <input
+                name="confirmPass"
+                type="password"
+                placeholder="Confirm Password"
+                onChange={handleChange}
+                className={`input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl ${
+                  passwordConfirmLength >= 7 && passwordMismatch
+                    ? "ring-2 ring-red-500"
+                    : ""
+                }`}
+              />
+              {passwordConfirmLength >= 7 && passwordMismatch && (
+                <FaExclamationCircle
+                  color="red"
+                  className="absolute top-[70%] right-[5%] transform -translate-y-1/2"
+                />
+              )}
+            </div>
+            {passwordConfirmLength >= 7 && passwordMismatch && (
               <p className="text-red-500 mt-1 text-sm font-semibold absolute">
                 Password and Confirm Password do not match.
               </p>
