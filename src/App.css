@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[data-theme="dark"] label,
+h2 {
+  color: rgb(226 232 240);
+}
+
+[data-theme="dark"] input:focus {
+  outline-width: 2.5px;
+  outline-color: rgb(226 232 240);
+  outline-offset: 1.5px;
+}
+[data-theme="light"] input:focus {
+  outline-width: 2.5px;
+  outline-color: rgb(31 41 55);
+  outline-offset: 1.5px;
+}
+
+.bg-form-img {
+  background-size: contain;
+}
