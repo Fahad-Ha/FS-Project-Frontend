@@ -3,7 +3,7 @@ import { login } from "../api/auth";
 import UserContext from "../context/UserContext";
 import { useMutation } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
-import AddCategories from "../component/AddCategories";
+import AddCategories from "../components/Categories/AddCategories";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});

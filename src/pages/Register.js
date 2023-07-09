@@ -5,7 +5,7 @@ import { FaExclamationCircle } from "react-icons/fa";
 
 import { isError, useMutation } from "react-query";
 import { checkToken, register } from "../api/auth";
-import ErrorMsg from "../component/ErrorMsg";
+import ErrorMsg from "../components/ErrorMsg";
 
 const Register = () => {
   const [user, setUser] = useContext(UserContext);

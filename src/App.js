@@ -4,11 +4,14 @@ import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Categories from "./pages/Categories";
 import { useEffect, useState } from "react";
 import UserContext from "./context/UserContext";
-import Nav from "./component/Nav";
+import Nav from "./components/Nav";
 import ThemeContext from "./context/ThemeContext";
 import { Theme } from "react-daisyui";
+import CategoriesList from "./components/Categories/CategoriesList";
+import CategoryDetail from "./components/Categories/CategoryDetails";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -30,6 +33,11 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route
+                path="/categories/:categoryId"
+                element={<CategoryDetail />}
+              />
             </Routes>
           </div>
         </Theme>
