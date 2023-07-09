@@ -3,14 +3,21 @@ import { Link, NavLink } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { Theme, Button, useTheme, Navbar, Menu } from "react-daisyui";
 import ThemeContext from "../context/ThemeContext";
+import { logout } from "../api/auth";
+import UserContext from "../context/UserContext";
 
 const Nav = () => {
   const [darkMode, setDarkMode] = useContext(ThemeContext);
+  const [user, setUser] = useContext(UserContext);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     // Add logic to toggle dark mode here (e.g., update CSS classes, theme, etc.)
   };
+  function logOUT() {
+    logout();
+    setUser(false);
+  }
 
   return (
     <Theme data-Theme={darkMode ? "dark" : "light"}>
@@ -24,16 +31,26 @@ const Nav = () => {
           tabIndex={0}
           className="menu menu-sm z-[1] shadow-lg  rounded-box flex flex-row  mr-[1%]"
         >
-          <li>
-            <NavLink className="border-r-4" exact to="/login">
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="border-r-4" exact to="/register">
-              Register
-            </NavLink>
-          </li>
+          {user ? (
+            <li>
+              <NavLink className="border-r-4" exact to="/" onClick={logOUT}>
+                Logout
+              </NavLink>
+            </li>
+          ) : (
+            <>
+              <li>
+                <NavLink className="border-r-4" exact to="/login">
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="border-r-4" exact to="/register">
+                  Register
+                </NavLink>
+              </li>{" "}
+            </>
+          )}
           <span className="mx-2"> {darkMode ? <FaMoon /> : <FaSun />}</span>
           <div className="flex">
             <input
