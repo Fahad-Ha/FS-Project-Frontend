@@ -13,8 +13,9 @@ const login = async (userInfo) => {
 };
 
 const register = async (userInfo) => {
-  // const formData = new FormData();
-  // for (const key in userInfo) formData.append(key, userInfo[key]);
+  // const formData = new FormData();  because we have an image for registeration so we create a **formData.**
+  // for (const key in userInfo) formData.append(key, userInfo[key]);   // if i have a formData, replace useInfo with forData.
+
   const { data } = await instance.post("/auth/register", userInfo);
   storeToken(data.token);
   return data;

@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserContext from "./context/UserContext";
 import Nav from "./component/Nav";
 import ThemeContext from "./context/ThemeContext";
@@ -13,6 +13,12 @@ import { Theme } from "react-daisyui";
 function App() {
   const [user, setUser] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+
+  // useEffect(()=>{
+  //   if(localStorage.getItem("token")){
+  //     setUser(true);
+  //   }
+  // },[]);
 
   return (
     <UserContext.Provider value={[user, setUser]}>

@@ -11,7 +11,11 @@ const ErrorMsg = ({ error, color }) => {
           : "bg-red-500  text-white px-4 py-3 mb-2 rounded-md text-sm text-center "
       }
     >
-      <p>{error?.response?.data?.message || error?.message}</p>
+      <p>
+        {error?.response?.data?.message ||
+          error?.response?.data ||
+          error?.message}
+      </p>
     </div>
   );
 };
