@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaExclamationCircle } from "react-icons/fa";
 
 import { isError, useMutation } from "react-query";
@@ -56,7 +56,7 @@ const Register = () => {
     <div className="bg-form-img  h-[100%] py-[2%] w-auto justify-center mx-auto ">
       <div className="card w-96 glass mx-auto h-[100%] backdrop-blur-2xl xl:w-[40%] ">
         <div className="card-body ">
-          <h2 className="card-title  text-3xl justify-center text-center my-[2%] xl:mt-[25%] xl:text-5xl 2xl:mt-[10%]">
+          <h2 className="card-title text-3xl justify-center text-center my-[2%] xl:mt-[25%] xl:text-5xl 2xl:mt-[10%]">
             Register
           </h2>
           <form
@@ -124,10 +124,16 @@ const Register = () => {
             <div className="card-actions justify-center">
               <button
                 type="submit"
-                className="w-[100%]  opacity-90 px-4 py-2 font-bold rounded-lg bg-orange-500 hover:bg-orange-600 text-gray-200 mt-[10%] xl:text-xl"
+                className="w-[100%]  opacity-90 px-4 py-2 font-bold rounded-lg bg-orange-500 hover:bg-orange-600 text-gray-200 mt-[8%] xl:text-xl"
               >
                 Register
               </button>
+              <p className="text-center">
+                Don't have an account ?{" "}
+                <Link className="underline" to="/register">
+                  Register
+                </Link>
+              </p>
             </div>
           </form>
         </div>

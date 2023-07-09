@@ -14,7 +14,7 @@ const Nav = () => {
 
   return (
     <Theme data-Theme={darkMode ? "dark" : "light"}>
-      <Navbar className="navbar h-[10%] flex flex-row justify-between">
+      <Navbar className="navbar   h-[10%] flex flex-row justify-between">
         <Link to="/">
           <Button className=" text-xl normal-case font-semibold">
             MunchMap
