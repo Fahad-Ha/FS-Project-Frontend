@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "react-daisyui";
+import { FaPlus } from "react-icons/fa";
 
 const AddCategories = () => {
   const [visible, setVisible] = useState(false);
@@ -11,8 +12,11 @@ const AddCategories = () => {
   return (
     <div className="text-center">
       {/* Open the modal using ID.showModal() method */}
-      <button className="btn" onClick={() => window.my_modal_5.showModal()}>
-        Add a new category
+      <button
+        className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
+        onClick={() => window.my_modal_5.showModal()}
+      >
+        <FaPlus className="text-green-500 " />
       </button>
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <form method="dialog" className="modal-box custom-modal-box">
