@@ -3,7 +3,7 @@ import UserContext from "../context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { FaExclamationCircle } from "react-icons/fa";
 
-import { isError, useMutation } from "react-query";
+import { isError, useMutation } from "@tanstack/react-query";
 import { checkToken, register } from "../api/auth";
 import ErrorMsg from "../component/ErrorMsg";
 
@@ -37,7 +37,6 @@ const Register = () => {
 
   const { mutate: registerFn, error } = useMutation({
     mutationFn: () => register(userInfo),
-    onError: (error) => alert(error),
     onSuccess: () => {
       if (localStorage.getItem("token")) {
         setUser(true);
@@ -54,24 +53,27 @@ const Register = () => {
 
   return (
     <div className="bg-form-img  h-[100%] py-[2%] w-auto justify-center mx-auto ">
-      <div className="card w-96 glass mx-auto h-[100%] backdrop-blur-2xl xl:w-[40%] ">
+      <div className="card w-96 glass max-w-screen-md mx-auto h-[100%] backdrop-blur-2xl xl:w-[40%] ">
         <div className="card-body ">
-          <h2 className="card-title text-3xl justify-center text-center my-[2%] xl:mt-[25%] xl:text-5xl 2xl:mt-[10%]">
+          <h2 className="card-title text-3xl justify-center text-center md:my-[2%] xl:mt-[25%] xl:text-5xl 2xl:mt-[10%]">
             Register
           </h2>
+
           <form
             onSubmit={handleFormSubmit}
-            className="xl:my-[30%] 2xl:my-[15%]  "
+            className="xl:my-[30%] 2xl:my-[15%] "
           >
             <ErrorMsg error={error} />
+
             <label className="label">Username</label>
             <input
               name="username"
               type="text"
               onChange={handleChange}
               placeholder="Username"
-              className="input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl
+              className="input md:input-md input-sm xl:input-lg opacity-70 w-full max-w-xs my-[0%] md:my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl
           "
+              required
             />
             <label className="label">Email</label>
             <input
@@ -79,8 +81,9 @@ const Register = () => {
               type="email"
               onChange={handleChange}
               placeholder="Email"
-              className="input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl
+              className="input input-sm md:input-md xl:input-lg  opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl
   "
+              required
             />
             <div className="relative">
               <label className="label">Password</label>
@@ -89,11 +92,12 @@ const Register = () => {
                 type="password"
                 onChange={handleChange}
                 placeholder="Password"
-                className={`input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-offset-2 xl:max-w-5xl ${
+                className={`input md:input-md input-sm xl:input-lg  opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-offset-2 xl:max-w-5xl ${
                   passwordLength >= 7 && passwordMismatch
                     ? "ring-2 ring-red-500"
                     : ""
                 }`}
+                required
               />
             </div>
             <div className="relative">
@@ -103,11 +107,12 @@ const Register = () => {
                 type="password"
                 placeholder="Confirm Password"
                 onChange={handleChange}
-                className={`input opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl ${
+                className={`input md:input-md input-sm xl:input-lg  opacity-70 w-full max-w-xs my-[1%] focus-visible:border-0 focus-visible:ring-0 xl:max-w-5xl ${
                   passwordConfirmLength >= 7 && passwordMismatch
                     ? "ring-2 ring-red-500"
                     : ""
                 }`}
+                required
               />
               {passwordConfirmLength >= 7 && passwordMismatch && (
                 <FaExclamationCircle
@@ -117,21 +122,21 @@ const Register = () => {
               )}
             </div>
             {passwordConfirmLength >= 7 && passwordMismatch && (
-              <p className="text-red-500 mt-1 text-sm font-semibold absolute">
+              <p className="text-red-500 mt-1 text-sm font-semibold absolute xl:text-lg ">
                 Password and Confirm Password do not match.
               </p>
             )}
             <div className="card-actions justify-center">
               <button
                 type="submit"
-                className="w-[100%]  opacity-90 px-4 py-2 font-bold rounded-lg bg-orange-500 hover:bg-orange-600 text-gray-200 mt-[8%] xl:text-xl"
+                className="w-[100%]  opacity-90 px-4 py-2 font-bold rounded-lg bg-orange-500 hover:bg-orange-600 text-gray-200 mt-[8%] xl:text-2xl"
               >
                 Register
               </button>
-              <p className="text-center">
-                Don't have an account ?{" "}
-                <Link className="underline" to="/register">
-                  Register
+              <p className="text-center xl:text-xl">
+                Already have an account ?{" "}
+                <Link className="underline" to="/login">
+                  Login
                 </Link>
               </p>
             </div>

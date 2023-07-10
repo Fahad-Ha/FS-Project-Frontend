@@ -14,8 +14,8 @@ const AddCategories = () => {
       <button className="btn" onClick={() => window.my_modal_5.showModal()}>
         Add a new category
       </button>
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
-        <form method="dialog" className="modal-box">
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <form method="dialog" className="modal-box custom-modal-box">
           <button className="btn btn-square absolute right-2 top-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const AddCategories = () => {
           />
           <div className="modal-action">
             {/* if there is a button in form, it will close the modal */}
-            <button className="btn btn-accent btn-sm md:btn-md xl:btn-lg mx-auto ">
+            <button className="btn btn-accent btn-sm md:btn-md xl:btn-lg mx-auto capitalize">
               Save
             </button>
           </div>
