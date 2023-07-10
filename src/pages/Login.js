@@ -3,7 +3,6 @@ import { login, register } from "../api/auth";
 import UserContext from "../context/UserContext";
 import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
-import AddCategories from "../component/AddCategories";
 import ErrorMsg from "../component/ErrorMsg";
 
 const Login = () => {
@@ -38,8 +37,6 @@ const Login = () => {
   return (
     <div className="bg-form-img h-[100%] py-[2%] w-full justify-center mx-auto ">
       <div className="card w-96 max-w-screen-md glass mx-auto h-[100%] backdrop-blur-2xl xl:w-[40%]">
-        <AddCategories />
-
         <div className="card-body ">
           <h2
             className="card-title 

@@ -9,6 +9,7 @@ import UserContext from "./context/UserContext";
 import Nav from "./component/Nav";
 import ThemeContext from "./context/ThemeContext";
 import { Theme } from "react-daisyui";
+import Categories from "./component/Categories";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -30,6 +31,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/categories" element={<Categories />} />
             </Routes>
           </div>
         </Theme>

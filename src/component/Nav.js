@@ -32,13 +32,20 @@ const Nav = () => {
           className="menu menu-sm lg:menu-md  z-[1] shadow-lg  rounded-box flex flex-row  mr-[1%]"
         >
           {user ? (
-            <li>
-              <NavLink className="border-r-4" exact to="/" onClick={logOUT}>
-                Logout
-              </NavLink>
-            </li>
+            <>
+              <li>
+                <NavLink className="border-r-4" exact to="/" onClick={logOUT}>
+                  Logout
+                </NavLink>
+              </li>
+            </>
           ) : (
             <>
+              <li>
+                <NavLink className="border-r-4" exact to="/categories">
+                  Categories
+                </NavLink>
+              </li>
               <li>
                 <NavLink className="border-r-4" exact to="/login">
                   Login

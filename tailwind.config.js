@@ -10,5 +10,5 @@ module.exports = {
       "form-img": "url('../src/images/Dev-image.jpg')",
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
 };
