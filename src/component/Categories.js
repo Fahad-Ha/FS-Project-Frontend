@@ -1,6 +1,7 @@
 import React from "react";
 import AddCategories from "./AddCategories";
 import { FaFire } from "react-icons/fa";
+import AddRecipe from "./AddRecipe";
 
 const Categories = () => {
   return (
