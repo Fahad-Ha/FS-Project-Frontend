@@ -21,7 +21,7 @@ const Nav = () => {
 
   return (
     <Theme data-Theme={darkMode ? "dark" : "light"}>
-      <Navbar className="navbar   h-[10%] flex flex-row justify-between">
+      <Navbar className="navbar  h-[10%] flex flex-row justify-between">
         <Link to="/">
           <Button className=" text-xl normal-case font-semibold">
             MunchMap
@@ -29,7 +29,7 @@ const Nav = () => {
         </Link>
         <ul
           tabIndex={0}
-          className="menu menu-sm z-[1] shadow-lg  rounded-box flex flex-row  mr-[1%]"
+          className="menu menu-sm lg:menu-md  z-[1] shadow-lg  rounded-box flex flex-row  mr-[1%]"
         >
           {user ? (
             <li>
@@ -44,11 +44,6 @@ const Nav = () => {
                   Login
                 </NavLink>
               </li>
-              <li>
-                <NavLink className="border-r-4" exact to="/register">
-                  Register
-                </NavLink>
-              </li>{" "}
             </>
           )}
           <span className="mx-2"> {darkMode ? <FaMoon /> : <FaSun />}</span>

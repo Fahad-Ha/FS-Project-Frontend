@@ -26,3 +26,9 @@ p {
 .bg-form-img {
   background-size: contain;
 }
+
+@media (min-width: 640px) {
+  .custom-modal-box {
+    width: 28% !important;
+  }
+}
