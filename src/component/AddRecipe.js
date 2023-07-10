@@ -1,6 +1,7 @@
 import React from "react";
 import { Input } from "react-daisyui";
 import { FaPlus } from "react-icons/fa";
+import ComboBox from "./ComboBox";
 
 const AddRecipe = () => {
   return (
@@ -39,6 +40,7 @@ const AddRecipe = () => {
               placeholder="Your recipe's name"
               className="input input-bordered  xl:input-md w-full  my-1"
             />
+
             <label>Choose category:</label>
             <select class="select select-bordered w-full max-w-xs my-1">
               <option disabled selected>
@@ -64,11 +66,16 @@ const AddRecipe = () => {
               className="file-input file-input-bordered w-full max-w-xs xl:file-input-md my-1"
             />
             <label>Add ingredients:</label>
-            <Input
+            {/* <Input
               type="text"
               placeholder="add ingredients"
               className="input input-bordered xl:input-md w-full my-1"
-            />
+            /> */}
+            {/*  */}
+
+            <ComboBox />
+
+            {/*  */}
             <label>Steps:</label>
             <textarea
               placeholder="Steps"
