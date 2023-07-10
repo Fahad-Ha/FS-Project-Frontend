@@ -2,41 +2,35 @@ import React from "react";
 import AddCategories from "./AddCategories";
 import { FaFire } from "react-icons/fa";
 import AddRecipe from "./AddRecipe";
+import CategoryCard from "./CategoryCard";
+import { useQuery } from "@tanstack/react-query";
+import { getCategories } from "../api/category";
 
 const Categories = () => {
+  const { data: categories, error } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => getCategories(),
+  });
+
+  const categoryList = categories?.map((category) => (
+    <CategoryCard category={category} />
+  ));
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <div className="flex flex-col h-full w-full">
         <div className="h-[40%] card bg-base-300 rounded-box place-items-center">
           <h3 className="mt-2 text-xl">Choose a category</h3>
-          <div className="flex flex-row justify-center gap:6 lg:gap-10 flex-wrap mt-[1%] xl:mt-[6%]">
-            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-              Japanese
-            </button>
-            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-              Breakfast
-            </button>
-            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-              Lunch
-            </button>
-            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-              Japanese
-            </button>
-            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-              Beverages
-            </button>
-            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-              Japanese
-            </button>{" "}
-            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-              Japanese
-            </button>{" "}
-            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-              Japanese
-            </button>{" "}
-            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-              Japanese
-            </button>
+          <div>
+            <div className="flex flex-row justify-center gap:6 lg:gap-10 flex-wrap mt-[1%] xl:mt-[6%]">
+              {categoryList}
+            </div>
+
+            <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"></button>
             <AddCategories />
           </div>
         </div>
