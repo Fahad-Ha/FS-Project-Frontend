@@ -30,14 +30,14 @@ const Recipe = () => {
     <RecipeCard key={recipe.id} recipe={recipe} />
   ));
 
-  const categoryList = sortedCategories?.map((category) => (
-    <RecipeCard key={category.id} category={category} />
-  ));
+  // const categoryList = sortedCategories?.map((category) => (
+  //   <RecipeCard key={category.id} category={category} />
+  // ));
 
   return (
     <>
       <div className="flex flex-row justify-center gap-2 lg:gap-10 flex-wrap mt-[1%] xl:mt-[6%]">
-        {recipeList} {categoryList}
+        {recipeList}
       </div>
     </>
   );
