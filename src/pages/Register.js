@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import { isError, useMutation } from "@tanstack/react-query";
+
 import { FaExclamationCircle } from "react-icons/fa";
 
-import { isError, useMutation } from "@tanstack/react-query";
 import { checkToken, register } from "../api/auth";
 import ErrorMsg from "../component/ErrorMsg";
 
@@ -39,7 +41,9 @@ const Register = () => {
     mutationFn: () => register(userInfo),
     onSuccess: () => {
       if (localStorage.getItem("token")) {
-        setUser(true);
+        const token = localStorage.getItem("token");
+        const decoded = jwt_decode(token);
+        setUser({ decoded: decoded });
         navigate("/categories");
       }
     },
