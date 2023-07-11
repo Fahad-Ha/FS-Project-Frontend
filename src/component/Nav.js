@@ -34,6 +34,11 @@ const Nav = () => {
           {user ? (
             <>
               <li>
+                <NavLink className="border-r-4" exact to="/categories">
+                  Categories
+                </NavLink>
+              </li>
+              <li>
                 <NavLink className="border-r-4" exact to="/" onClick={logOUT}>
                   Logout
                 </NavLink>

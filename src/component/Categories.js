@@ -23,16 +23,23 @@ const Categories = () => {
   const categoryList = sortedCategories?.map((category) => (
     <CategoryCard key={category.id} category={category} />
   ));
-
+  console.log(user);
   return (
     <>
-      <div className="h-[40%] card bg-base-100 rounded-box place-items-center">
-        <h3 className="mt-2 text-xl font-bold">Choose a category</h3>
+      <div className="flex flex-col h-full w-full">
+        <div className="h-[40%] card bg-base-100 rounded-box place-items-center">
+          <h3 className="mt-2 text-xl font-bold">Choose a category</h3>
 
-        <div className="flex flex-row justify-center gap-2 lg:gap-10 flex-wrap mt-[1%] xl:mt-[6%]">
-          {categoryList}
-
-          <AddCategories />
+          <div className="flex flex-row justify-center gap-2 lg:gap-10 flex-wrap mt-[1%] xl:mt-[6%]">
+            {categoryList}
+          </div>
+          {user?.decoded?.isStaff ? (
+            <div className="justify-center mx-auto mt-2">
+              <AddCategories />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="divider"></div>
         <div className="h-[60%] card bg-base-300 rounded-box place-items-center">
