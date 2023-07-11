@@ -16,25 +16,21 @@ const AddRecipe = () => {
   function theSteps(e) {
     setSteps(e.target.value);
   }
-  // const handleAdd=()=>{
-  //   if(addCategory.trim() !== ''){
-  //     setListCategory([...ListCategory, addCategory])
-  //     setaddCategory('')
-  //   }
-  // }
+
   const handleChange = (e) => {
     setaddCategory(e.target.value);
   };
   return (
     <div className="text-center">
-      {/* Open the modal using ID.showModal() method */}
       <label>Add Recipe</label>
-      <button
-        className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
-        onClick={() => window.my_modal_5.showModal()}
-      >
-        <FaPlus className="text-green-500 " />
-      </button>
+      <div>
+        <button
+          className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
+          onClick={() => window.my_modal_5.showModal()}
+        >
+          <FaPlus className="text-green-500 " />
+        </button>
+      </div>
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <form method="dialog" className="modal-box custom-modal-box">
           <button className="btn btn-square absolute right-2 top-2">
@@ -88,16 +84,7 @@ const AddRecipe = () => {
               className="file-input file-input-bordered w-full max-w-xs xl:file-input-md my-1"
             />
             <label>Add ingredients:</label>
-            {/* <Input
-              type="text"
-              placeholder="add ingredients"
-              className="input input-bordered xl:input-md w-full my-1"
-            /> */}
-            {/*  */}
-
             <ComboBox />
-
-            {/*  */}
             <label>Steps:</label>
             <textarea
               placeholder="Steps"
@@ -105,7 +92,6 @@ const AddRecipe = () => {
               className="textarea textarea-bordered textarea-md w-full max-w-xs  my-1"
             ></textarea>
             <div className="modal-action">
-              {/* if there is a button in form, it will close the modal */}
               <button className="btn btn-accent btn-sm md:btn-md lg:btn-md xl:btn-md mx-auto capitalize">
                 Save
               </button>

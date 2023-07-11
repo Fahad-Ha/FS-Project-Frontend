@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { FaExclamationCircle } from "react-icons/fa";
-
 import { isError, useMutation } from "@tanstack/react-query";
 import { checkToken, register } from "../api/auth";
 import ErrorMsg from "../component/ErrorMsg";
@@ -48,7 +47,6 @@ const Register = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     registerFn();
-    // console.log(userInfo);
   };
 
   return (

@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import UserContext from "../context/UserContext";
 import { useQuery } from "@tanstack/react-query";
-
 import AddCategories from "./AddCategories";
 import CategoryCard from "./CategoryCard";
 import AddRecipe from "./AddRecipe";
-
 import { FaFire } from "react-icons/fa";
-
 import { getCategories } from "../api/category";
 
 const Categories = () => {
