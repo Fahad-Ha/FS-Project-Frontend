@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "react-daisyui";
 import { FaPlus } from "react-icons/fa";
 import ComboBox from "./ComboBox";
 
 const AddRecipe = () => {
+  const [recipeName, setRecipeName] = useState("");
+  const [Steps, setSteps] = useState("");
+  const [addCategory, setaddCategory] = useState("");
+  const [ListCategory, setListCategory] = useState([]);
+
+  function recipesName_(e) {
+    setRecipeName(e.target.value);
+  }
+
+  function theSteps(e) {
+    setSteps(e.target.value);
+  }
+  // const handleAdd=()=>{
+  //   if(addCategory.trim() !== ''){
+  //     setListCategory([...ListCategory, addCategory])
+  //     setaddCategory('')
+  //   }
+  // }
+  const handleChange = (e) => {
+    setaddCategory(e.target.value);
+  };
   return (
     <div className="text-center">
       {/* Open the modal using ID.showModal() method */}
@@ -38,6 +59,7 @@ const AddRecipe = () => {
             <Input
               type="text"
               placeholder="Your recipe's name"
+              onChange={recipesName_}
               className="input input-bordered  xl:input-md w-full  my-1"
             />
 
@@ -79,6 +101,7 @@ const AddRecipe = () => {
             <label>Steps:</label>
             <textarea
               placeholder="Steps"
+              onChange={theSteps}
               className="textarea textarea-bordered textarea-md w-full max-w-xs  my-1"
             ></textarea>
             <div className="modal-action">
