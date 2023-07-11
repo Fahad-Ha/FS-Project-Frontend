@@ -3,6 +3,8 @@ import { login, register } from "../api/auth";
 import UserContext from "../context/UserContext";
 import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+
 import ErrorMsg from "../component/ErrorMsg";
 
 const Login = () => {
@@ -12,11 +14,15 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const [darkMode, setDarkMode] = useState(false);
+
   const { mutate: loginFn, error } = useMutation({
     mutationFn: () => login(userInfo),
     onSuccess: () => {
       if (localStorage.getItem("token")) {
-        setUser(true);
+        const token = localStorage.getItem("token");
+        const decoded = jwt_decode(token);
+        setUser({ decoded: decoded });
         navigate("/categories");
       }
     },

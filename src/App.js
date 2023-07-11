@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UserContext from "./context/UserContext";
 import Nav from "./component/Nav";
 import ThemeContext from "./context/ThemeContext";
@@ -13,7 +13,9 @@ import Categories from "./component/Categories";
 import Recipe from "./component/Recipe";
 
 function App() {
-  const [user, setUser] = useState(false);
+  // const decoded_token = jwt_decode(token).decoded_token;
+
+  const [user, setUser] = useState({});
   const [darkMode, setDarkMode] = useState(false);
 
   // useEffect(()=>{
