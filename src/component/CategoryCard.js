@@ -1,20 +1,15 @@
 import React from "react";
 import { Button } from "react-daisyui";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const CategoryCard = ({ category }) => {
-  console.log(category);
   return (
     <>
-      <div className="flex flex-row gap-10 flex-wrap">
-        <div>
-          <NavLink to="/">
-            <Button className="card w-36 h-28 flex flex-row bg-base-100 shadow-xl border-2 hover:bg-sky-700 cursor-pointer normal-case text-lg">
-              {category?.name}
-            </Button>
-          </NavLink>
-        </div>
-      </div>
+      <NavLink to="/">
+        <button className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out normal-case">
+          {category?.name}
+        </button>
+      </NavLink>
     </>
   );
 };
