@@ -5,4 +5,9 @@ const getCategories = async () => {
   return res.data;
 };
 
-export { getCategories };
+const addCategory = async (name) => {
+  const res = await instance.post("/categories", { name });
+  return res.data;
+};
+
+export { getCategories, addCategory };

@@ -1,26 +1,80 @@
 import React, { useState } from "react";
 import { Input } from "react-daisyui";
 import { FaPlus } from "react-icons/fa";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addCategory } from "../api/category";
 
 const AddCategories = () => {
-  const [visible, setVisible] = useState(false);
+  const [categoryName, setCategoryName] = useState("");
+  const queryClient = useQueryClient();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errorState, setErrorState] = useState(null);
+  const [successState, setSuccessState] = useState(false);
 
-  const toggleVisible = () => {
-    setVisible(!visible);
+  const { mutate: addCategoryFun, isLoading: addCategoryFunLoading } =
+    useMutation({
+      mutationFn: () => {
+        return addCategory(categoryName);
+      },
+      onError: (error) => {
+        setErrorState(error.response?.data?.message);
+        setSuccessState(false);
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries(["categories"]);
+        setCategoryName("");
+        closeModal();
+        setSuccessState(true);
+      },
+    });
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    setErrorState(null);
+    setSuccessState(false);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCategoryName("");
+    setErrorState(null);
+    setSuccessState(false);
   };
 
   return (
     <div className="text-center">
-      {/* Open the modal using ID.showModal() method */}
       <button
         className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
-        onClick={() => window.my_modal_5.showModal()}
+        onClick={openModal}
       >
         <FaPlus className="text-green-500 " />
       </button>
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <form method="dialog" className="modal-box custom-modal-box">
-          <button className="btn btn-square absolute right-2 top-2">
+      <div className="mt-4">
+        {successState && (
+          <p className="text-green-500 text-sm font-semibold xl:text-lg">
+            Category added successfully!
+          </p>
+        )}
+      </div>
+      <dialog
+        id="my_modal_5"
+        className={`modal modal-bottom sm:modal-middle ${
+          isModalOpen ? "modal-open" : ""
+        }`}
+      >
+        <form
+          onSubmit={handleFormSubmit}
+          method="dialog"
+          className="modal-box custom-modal-box "
+        >
+          <button
+            onClick={closeModal}
+            className="btn btn-square absolute right-2 top-2"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -36,17 +90,37 @@ const AddCategories = () => {
               />
             </svg>
           </button>
-          <h3 className="font-bold text-lg">Add a new category</h3>
+          <h3 className="font-bold text-lg mb-4 mt-8">Add a new category</h3>
 
           <Input
+            name="name"
             type="text"
             placeholder="New category"
-            className="input input-bordered mt-[5%]"
+            className={`input input-bordered mt-[5%] ${
+              errorState ? "input-error" : ""
+            }`}
+            value={categoryName}
+            onChange={(e) => setCategoryName(e.target.value)}
+            required
           />
+          {errorState && (
+            <p className="text-red-500 mt-1 text-sm font-semibold xl:text-lg">
+              {errorState}
+            </p>
+          )}
+
           <div className="modal-action">
-            {/* if there is a button in form, it will close the modal */}
-            <button className="btn btn-accent btn-sm md:btn-md xl:btn-lg mx-auto capitalize">
-              Save
+            <button
+              onClick={addCategoryFun}
+              disabled={addCategoryFunLoading}
+              type="submit"
+              className="btn btn-accent btn-sm md:btn-md xl:btn-lg mx-auto capitalize"
+            >
+              {addCategoryFunLoading ? (
+                <span className="loading loading-spinner loading-sm xl:loading-md"></span>
+              ) : (
+                "Save"
+              )}
             </button>
           </div>
         </form>

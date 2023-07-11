@@ -29,6 +29,7 @@ p {
 
 @media (min-width: 640px) {
   .custom-modal-box {
-    width: 28% !important;
+    width: 40% !important;
+    max-width: 300px !important;
   }
 }
