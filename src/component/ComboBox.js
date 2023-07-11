@@ -52,6 +52,8 @@ const ComboBox = ({ selectedIngredients, setSelectedIngredients }) => {
     setSelectedIngredients(selected);
   };
 
+  console.log(selectedIngredients);
+
   return (
     <div>
       <MultiSelect
