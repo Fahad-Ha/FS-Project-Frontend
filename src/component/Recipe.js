@@ -1,45 +1,27 @@
-import React, { useContext } from "react";
-import UserContext from "../context/UserContext";
-import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 import AddRecipe from "./AddRecipe";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getRecipes } from "../api/recipe";
 import RecipeCard from "./RecipeCard";
-import CategoryCard from "./CategoryCard";
-import { getCategories } from "../api/category";
 
 const Recipe = () => {
-  const [user, setUser] = useContext(UserContext);
-
-  const { data: recipes } = useQuery({
-    queryKey: ["recipes"],
-    queryFn: () => getRecipes(),
-  });
-
-  const { data: categories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => getCategories(),
-  });
-
-  // Sort the recipes alphabetically by name
-  const sortedRecipes = recipes?.sort((a, b) => a.name.localeCompare(b.name));
-  const sortedCategories = categories?.sort((a, b) =>
-    a.name.localeCompare(b.name)
+  const [query, setQuery] = useState("");
+  const recipe = useQuery(["recipes"], () => getRecipes());
+  const filterRecipes = recipe?.data?.filter((recipe) =>
+    recipe.name.toLowerCase().includes(query.toLowerCase())
   );
-
-  const recipeList = sortedRecipes?.map((recipe) => (
+  const recipeList = filterRecipes?.map((recipe) => (
     <RecipeCard key={recipe.id} recipe={recipe} />
   ));
-
-  // const categoryList = sortedCategories?.map((category) => (
-  //   <RecipeCard key={category.id} category={category} />
-  // ));
-
   return (
-    <>
-      <div className="flex flex-row justify-center gap-2 lg:gap-10 flex-wrap mt-[1%] xl:mt-[6%]">
-        {recipeList}
+    <div>
+      <div className="h-[40%] card bg-base-100 rounded-box place-items-center">
+        <AddRecipe />
+        <div className="flex flex-row justify-center gap-2 lg:gap-10 flex-wrap mt-[1%] xl:mt-[6%]">
+          {recipeList}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

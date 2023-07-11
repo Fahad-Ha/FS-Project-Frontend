@@ -2,24 +2,22 @@ import React, { useState } from "react";
 import { Input } from "react-daisyui";
 import { FaPlus } from "react-icons/fa";
 import ComboBox from "./ComboBox";
+import { addRecipe } from "../api/recipe";
+import { useMutation } from "@tanstack/react-query";
 
 const AddRecipe = () => {
-  const [recipeName, setRecipeName] = useState("");
-  const [Steps, setSteps] = useState("");
-  const [addCategory, setaddCategory] = useState("");
-  const [ListCategory, setListCategory] = useState([]);
-
-  function recipesName_(e) {
-    setRecipeName(e.target.value);
-  }
-
-  function theSteps(e) {
-    setSteps(e.target.value);
-  }
-
+  const [recipeInfo, setRecipeInfo] = useState({});
   const handleChange = (e) => {
-    setaddCategory(e.target.value);
+    if (e.target.name === "image") {
+      setRecipeInfo({ ...recipeInfo, [e.target.name]: e.target.files[0] });
+    } else {
+      setRecipeInfo({ ...recipeInfo, [e.target.name]: e.target.value });
+    }
   };
+  const { mutate: recipeMutate } = useMutation({
+    mutationFn: (recipeInfo) => addRecipe(recipeInfo),
+    onSuccess: () => {},
+  });
   return (
     <div className="text-center">
       <label>Add Recipe</label>
@@ -53,10 +51,10 @@ const AddRecipe = () => {
           <div className="text-left my-6">
             <label>Recipe's name:</label>
             <Input
-              type="text"
+              name="name"
               placeholder="Your recipe's name"
-              onChange={recipesName_}
               className="input input-bordered  xl:input-md w-full  my-1"
+              onChange={handleChange}
             />
 
             <label>Choose category:</label>
@@ -81,6 +79,8 @@ const AddRecipe = () => {
             <label>Insert a photo</label>
             <input
               type="file"
+              name="image"
+              onChange={handleChange}
               className="file-input file-input-bordered w-full max-w-xs xl:file-input-md my-1"
             />
             <label>Add ingredients:</label>
@@ -88,11 +88,15 @@ const AddRecipe = () => {
             <label>Steps:</label>
             <textarea
               placeholder="Steps"
-              onChange={theSteps}
+              onChange={handleChange}
               className="textarea textarea-bordered textarea-md w-full max-w-xs  my-1"
             ></textarea>
             <div className="modal-action">
-              <button className="btn btn-accent btn-sm md:btn-md lg:btn-md xl:btn-md mx-auto capitalize">
+              {/* if there is a button in form, it will close the modal */}
+              <button
+                onClick={() => recipeMutate(recipeInfo)}
+                className="btn btn-accent btn-sm md:btn-md lg:btn-md xl:btn-md mx-auto capitalize"
+              >
                 Save
               </button>
             </div>

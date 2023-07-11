@@ -1,6 +1,4 @@
 import React from "react";
-import { Button } from "react-daisyui";
-import { NavLink } from "react-router-dom";
 
 const RecipeCard = ({ recipe }) => {
   return (

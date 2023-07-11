@@ -5,4 +5,16 @@ const getRecipes = async () => {
   return res.data;
 };
 
-export { getRecipes };
+const addRecipe = async (recipeInfo) => {
+  console.log(recipeInfo);
+  const formData = new FormData();
+  for (const key in recipeInfo) formData.append(key, recipeInfo[key]);
+  const res = await instance.post("/recipes", formData);
+  return res.data;
+};
+
+const deleteRecipe = async (recipeId) => {
+  const res = await instance.delete("/recipes", { recipeId });
+  return res.data;
+};
+export { addRecipe, getRecipes, deleteRecipe };
