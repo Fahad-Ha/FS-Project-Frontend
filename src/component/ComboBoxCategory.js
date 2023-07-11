@@ -2,19 +2,20 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { addIngredient, recipeIngrediants } from "../api/ingredient";
+import { addCategory, getCategories } from "../api/category";
 
-const ComboBox = ({ selectedIngredients, setSelectedIngredients }) => {
+const ComboBoxCategory = ({ selectedIngredients, setSelectedIngredients }) => {
   const queryClient = useQueryClient();
 
   const { data: ingredients } = useQuery({
-    queryKey: ["ingredients"],
-    queryFn: () => recipeIngrediants(),
+    queryKey: ["categories"],
+    queryFn: () => getCategories(),
   });
 
   const { mutate: addIngredientFun } = useMutation({
-    mutationFn: (e) => addIngredient(e),
+    mutationFn: (e) => addCategory(e),
     onSuccess: () => {
-      queryClient.invalidateQueries(["ingredients"]);
+      queryClient.invalidateQueries(["categories"]);
     },
   });
 
@@ -35,6 +36,7 @@ const ComboBox = ({ selectedIngredients, setSelectedIngredients }) => {
   //   { label: "Ingredient 8", value: "ingredient8" },
   //   // Add more options as needed
   // ];
+
   const fixThis = (d2) => {
     setTimeout(() => {
       setSelectedIngredients(
@@ -51,8 +53,6 @@ const ComboBox = ({ selectedIngredients, setSelectedIngredients }) => {
   const handleIngredientChange = (selected) => {
     setSelectedIngredients(selected);
   };
-
-  console.log(selectedIngredients);
 
   return (
     <div>
@@ -72,4 +72,4 @@ const ComboBox = ({ selectedIngredients, setSelectedIngredients }) => {
   );
 };
 
-export default ComboBox;
+export default ComboBoxCategory;

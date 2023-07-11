@@ -6,7 +6,7 @@ const getCategories = async () => {
 };
 
 const addCategory = async (name) => {
-  const res = await instance.post("/categories", { name });
+  const res = await instance.post("/categories", name);
   return res.data;
 };
 
