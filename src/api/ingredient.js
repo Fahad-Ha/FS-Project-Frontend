@@ -5,4 +5,9 @@ const recipeIngrediants = async () => {
   return res.data;
 };
 
-export { recipeIngrediants };
+const addIngredient = async (data) => {
+  const res = await instance.post("/ingredients", data);
+  return res.data;
+};
+
+export { recipeIngrediants, addIngredient };

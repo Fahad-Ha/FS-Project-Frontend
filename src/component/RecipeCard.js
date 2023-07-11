@@ -5,7 +5,11 @@ const RecipeCard = ({ recipe }) => {
     <>
       <div className="card w-full md:w-1/3 lg:w-1/4  xl:w-96 bg-base-100 shadow-xl hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
         <figure>
-          <img className="bg-form-img h-32 xl:h-44 w-full" alt="Recipe" />
+          <img
+            className=" h-32 xl:h-44 w-full"
+            alt="Recipe"
+            src={`http://localhost:5000/${recipe?.image}`}
+          />
         </figure>
         <div className="card-body ">
           <h3 className="card-title ">{recipe?.name}</h3>

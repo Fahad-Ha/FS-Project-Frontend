@@ -8,7 +8,15 @@ const getRecipes = async () => {
 const addRecipe = async (recipeInfo) => {
   console.log(recipeInfo);
   const formData = new FormData();
-  for (const key in recipeInfo) formData.append(key, recipeInfo[key]);
+  for (const key in recipeInfo) {
+    if (Array.isArray(recipeInfo[key])) {
+      recipeInfo[key].forEach((item) => {
+        formData.append(key, item);
+      });
+    } else {
+      formData.append(key, recipeInfo[key]);
+    }
+  }
   const res = await instance.post("/recipes", formData);
   return res.data;
 };

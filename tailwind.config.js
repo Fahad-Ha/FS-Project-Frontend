@@ -4,6 +4,7 @@ module.exports = {
   daisyui: {
     themes: ["light", "dark", "cupcake"],
   },
+  important: true,
   theme: {
     extend: {},
     backgroundImage: {
