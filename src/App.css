@@ -33,3 +33,35 @@ p {
     max-width: 300px !important;
   }
 }
+
+.slider-container {
+  width: 100%;
+
+  justify-content: center;
+}
+
+.slider-wrapper,
+.slick-prev {
+  left: -50px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 2.5rem !important;
+}
+
+[data-theme="dark"] .slick-prev:before,
+[data-theme="dark"] .slick-next:before {
+  color: rgb(226 232 240) !important;
+}
+
+[data-theme="light"] .slick-prev:before,
+[data-theme="light"] .slick-next:before {
+  color: rgb(31 41 55) !important;
+}
+
+.slick-dots li button:before {
+  color: orangered !important;
+  font-size: 0.7rem !important;
+  margin-left: 50px !important;
+}

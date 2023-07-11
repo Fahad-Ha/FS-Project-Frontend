@@ -16,7 +16,7 @@ const Nav = () => {
   };
   function logOUT() {
     logout();
-    setUser(false);
+    setUser({});
   }
 
   return (
@@ -31,7 +31,7 @@ const Nav = () => {
           tabIndex={0}
           className="menu menu-sm lg:menu-md  z-[1] shadow-lg  rounded-box flex flex-row  mr-[1%]"
         >
-          {user ? (
+          {user?.decoded?.name ? (
             <>
               <li>
                 <NavLink className="border-r-4" exact to="/categories">
