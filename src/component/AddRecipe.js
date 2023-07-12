@@ -26,7 +26,9 @@ const AddRecipe = () => {
   });
   return (
     <div className="text-center">
-      <label>Add Recipe</label>
+      <h3 className="mt-2 text-xl inline-block font-bold text-center my-2">
+        Add Recipe
+      </h3>
       <div>
         <button
           className="btn btn-lg hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"

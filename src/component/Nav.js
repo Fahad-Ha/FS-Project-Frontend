@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
+import Munchmap from "../images/Munchmap.png";
 import { Theme, Button, useTheme, Navbar, Menu } from "react-daisyui";
 import ThemeContext from "../context/ThemeContext";
 import { logout } from "../api/auth";
