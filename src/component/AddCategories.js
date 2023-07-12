@@ -14,7 +14,7 @@ const AddCategories = () => {
   const { mutate: addCategoryFun, isLoading: addCategoryFunLoading } =
     useMutation({
       mutationFn: () => {
-        return addCategory(categoryName);
+        return addCategory({ name: categoryName });
       },
       onError: (error) => {
         setErrorState(error.response?.data?.message);
@@ -30,6 +30,7 @@ const AddCategories = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    console.log(categoryName);
   };
 
   const openModal = () => {
