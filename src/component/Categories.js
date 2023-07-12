@@ -39,8 +39,8 @@ const Categories = () => {
 
   return (
     <>
-      <div className="h-[30%] card bg-base-100 rounded-box">
-        <h3 className="mt-2 text-xl font-bold text-center my-2 ">
+      <div className="h-[32%] card bg-base-100 rounded-box">
+        <h3 className="mt-2 text-xl inline-block font-bold text-center my-2 ">
           Choose a category
         </h3>
         <div className="slider-container  my-auto ">
@@ -58,7 +58,7 @@ const Categories = () => {
         </div>
 
         {user?.decoded?.isStaff ? (
-          <div className="justify-center mx-auto mt-2">
+          <div className="justify-center mx-auto mt-6">
             <AddCategories />
           </div>
         ) : (
@@ -68,7 +68,7 @@ const Categories = () => {
 
       <div className="divider"></div>
 
-      <div className="h-[60%] card bg-base-300 rounded-box place-items-center">
+      <div className="h-[60%] card bg-base-100 rounded-box place-items-center">
         <h3 className="flex mt-[1%] text-xl mb-[1%] xl:mb-12 items-center font-bold">
           Or see what's trending
           <FaFire className="text-red-500 ml-2" />

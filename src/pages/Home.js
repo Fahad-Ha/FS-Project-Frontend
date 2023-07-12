@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Hero } from "react-daisyui";
+import { Button } from "react-daisyui";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -7,19 +8,23 @@ const Home = () => {
       className="hero h-[100%]"
       style={{
         backgroundImage:
-          "url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)",
+          "url(https://img.freepik.com/free-photo/vintage-old-rustic-cutlery-dark_1220-4886.jpg)",
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-          <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+          <h1 className="mb-5 text-4xl font-bold">Welcome to MunchMap</h1>
+          <p className="mb-5 text-lg">
+            Discover delicious recipes for every occasion and explore a world of
+            culinary delights. From quick and easy meals to gourmet dishes,
+            we've got you covered.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <Link to="/categories">
+            <Button className="w-[50%] font-bold text-gray-200 px-4 py-2  rounded-lg bg-orange-500 hover:bg-orange-600 mt-[8%] xl:text-2xl text-xl normal-case ">
+              Get Started
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

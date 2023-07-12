@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+h3,
+p,
+h4 {
+  font-family: "Karla", sans-serif;
+}
+
 [data-theme="dark"] label,
 h2,
 p {
