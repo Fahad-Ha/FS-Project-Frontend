@@ -31,13 +31,20 @@ const Nav = () => {
           tabIndex={0}
           className="menu menu-sm lg:menu-md  z-[1] shadow-lg  rounded-box flex flex-row  mr-[1%]"
         >
-          {user?.decoded?.name ? (
+          <>
+            <li>
+              <NavLink className="border-r-4" exact to="/recipes">
+                Recipes
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="border-r-4" exact to="/categories">
+                Categories
+              </NavLink>
+            </li>
+          </>
+          {user?.decoded ? (
             <>
-              <li>
-                <NavLink className="border-r-4" exact to="/categories">
-                  Categories
-                </NavLink>
-              </li>
               <li>
                 <NavLink className="border-r-4" exact to="/" onClick={logOUT}>
                   Logout
@@ -46,11 +53,6 @@ const Nav = () => {
             </>
           ) : (
             <>
-              <li>
-                <NavLink className="border-r-4" exact to="/categories">
-                  Categories
-                </NavLink>
-              </li>
               <li>
                 <NavLink className="border-r-4" exact to="/login">
                   Login
