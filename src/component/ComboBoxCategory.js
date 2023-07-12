@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { addIngredient, recipeIngrediants } from "../api/ingredient";
 import { addCategory, getCategories } from "../api/category";
+import ErrorMsg from "./ErrorMsg";
 
 const ComboBoxCategory = ({ selectedIngredients, setSelectedIngredients }) => {
   const queryClient = useQueryClient();
@@ -12,7 +13,7 @@ const ComboBoxCategory = ({ selectedIngredients, setSelectedIngredients }) => {
     queryFn: () => getCategories(),
   });
 
-  const { mutate: addIngredientFun } = useMutation({
+  const { mutate: addIngredientFun, error } = useMutation({
     mutationFn: (e) => addCategory(e),
     onSuccess: () => {
       queryClient.invalidateQueries(["categories"]);
@@ -56,6 +57,8 @@ const ComboBoxCategory = ({ selectedIngredients, setSelectedIngredients }) => {
 
   return (
     <div>
+      <ErrorMsg error={error} />
+      <div className="mt-2"></div>
       <MultiSelect
         onCreateOption={onCreate}
         isCreatable={true}

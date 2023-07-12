@@ -38,7 +38,7 @@ const AddRecipe = () => {
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <form
           method="dialog"
-          className="modal-box custom-modal-box  bg-red-500 !w-[50000px] "
+          className="modal-box custom-modal-box  bg-white !w-[50000px] "
         >
           <button className="btn btn-square absolute right-2 top-2">
             <svg
@@ -72,26 +72,32 @@ const AddRecipe = () => {
               selectedIngredients={selectedIngredients2}
               setSelectedIngredients={setSelectedIngredients2}
             />
+            <div>
+              <label>Insert a photo</label>
+              <input
+                type="file"
+                name="image"
+                onChange={handleChange}
+                className="file-input file-input-bordered w-full max-w-xs xl:file-input-md my-2"
+              />
+            </div>
+            <div>
+              <label>Add ingredients:</label>
+              <ComboBox
+                selectedIngredients={selectedIngredients}
+                setSelectedIngredients={setSelectedIngredients}
+              />
+            </div>
+            <div className="flex flex-col  gap-[15px] justify-start items-start mt-5">
+              <label>Steps:</label>
+              <textarea
+                placeholder="Steps"
+                name="steps "
+                onChange={handleChange}
+                className="textarea textarea-bordered textarea-md w-full   my-1"
+              ></textarea>
+            </div>
 
-            <label>Insert a photo</label>
-            <input
-              type="file"
-              name="image"
-              onChange={handleChange}
-              className="file-input file-input-bordered w-full max-w-xs xl:file-input-md my-1"
-            />
-            <label>Add ingredients:</label>
-            <ComboBox
-              selectedIngredients={selectedIngredients}
-              setSelectedIngredients={setSelectedIngredients}
-            />
-            <label>Steps:</label>
-            <textarea
-              placeholder="Steps"
-              name="steps "
-              onChange={handleChange}
-              className="textarea textarea-bordered textarea-md w-full max-w-xs  my-1"
-            ></textarea>
             <div className="modal-action">
               {/* if there is a button in form, it will close the modal */}
               <button
