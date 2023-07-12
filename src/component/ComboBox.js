@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { addIngredient, recipeIngrediants } from "../api/ingredient";
+import ErrorMsg from "./ErrorMsg";
 
 const ComboBox = ({ selectedIngredients, setSelectedIngredients }) => {
   const queryClient = useQueryClient();
@@ -11,7 +12,7 @@ const ComboBox = ({ selectedIngredients, setSelectedIngredients }) => {
     queryFn: () => recipeIngrediants(),
   });
 
-  const { mutate: addIngredientFun } = useMutation({
+  const { mutate: addIngredientFun, error } = useMutation({
     mutationFn: (e) => addIngredient(e),
     onSuccess: () => {
       queryClient.invalidateQueries(["ingredients"]);
@@ -56,6 +57,7 @@ const ComboBox = ({ selectedIngredients, setSelectedIngredients }) => {
 
   return (
     <div>
+      <ErrorMsg error={error} />
       <MultiSelect
         onCreateOption={onCreate}
         isCreatable={true}

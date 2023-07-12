@@ -1,4 +1,5 @@
 import React from "react";
+import { BASEURL } from "../api";
 
 const RecipeCard = ({ recipe }) => {
   return (
@@ -8,7 +9,7 @@ const RecipeCard = ({ recipe }) => {
           <img
             className=" h-32 xl:h-44 w-full"
             alt="Recipe"
-            src={`http://localhost:5000/${recipe?.image}`}
+            src={`${BASEURL}/${recipe?.image}`}
           />
         </figure>
         <div className="card-body ">
