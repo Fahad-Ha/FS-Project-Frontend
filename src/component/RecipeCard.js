@@ -4,7 +4,7 @@ import { BASEURL } from "../api";
 const RecipeCard = ({ recipe }) => {
   return (
     <>
-      <div className="card w-full md:w-1/3 lg:w-1/4  xl:w-96 bg-base-100 shadow-xl hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
+      <div className="card w-full xl:w-96 bg-base-100 shadow-xl hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
         <figure>
           <img
             className=" h-32 xl:h-44 w-full"
